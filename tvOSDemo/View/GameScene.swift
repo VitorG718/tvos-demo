@@ -10,22 +10,21 @@ import SpriteKit
 final class GameScene: SKScene {
     
     private var factory = Factory.shared
-    private var square: SKSpriteNode!
+    private var player: SKSpriteNode!
     var timerManager: TimerManager?
-    var lifeBarManager: LifeBarManager?
     private var timer: Timer?
     
     override func sceneDidLoad() {
         backgroundColor = .blue
-        square = factory.createSpaceShip(CGPoint(x: frame.midX, y: frame.midY))
-        addChild(square)
+        player = factory.createSpaceShip(CGPoint(x: frame.midX, y: frame.midY))
+        addChild(player)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         var position = touch.location(in: self)
         position = validatePosition(position)
-        square.position = position
+        player.position = position
     }
     
     override func didMove(to view: SKView) {
